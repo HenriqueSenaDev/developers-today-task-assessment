@@ -1,5 +1,5 @@
 import { CountryService } from "@/services/country";
-import { CountryInfoButton } from "../(country-list)/components/country-info-button";
+import { CountryInfoButton } from "../../components/country-info-button";
 import { CountryPopulationChart } from "./components/population-chart";
 
 type CountryInfoPageProps = {

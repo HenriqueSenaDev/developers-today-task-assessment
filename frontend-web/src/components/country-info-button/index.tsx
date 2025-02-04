@@ -9,8 +9,10 @@ type CountryInfoButtonProps = {
 };
 
 export const CountryInfoButton = ({ countryData }: CountryInfoButtonProps) => {
+  const linkURL = `/country-info?code=${countryData.countryCode}&name=${countryData.name}`;
+
   return (
-    <Link href={`/country-info/${countryData.countryCode}`}>
+    <Link href={linkURL}>
       <Button
         key={countryData.countryCode}
         variant="secondary"

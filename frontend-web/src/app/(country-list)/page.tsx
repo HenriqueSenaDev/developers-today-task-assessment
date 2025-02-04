@@ -1,5 +1,5 @@
 import { CountryService } from "@/services/country";
-import { CountryInfoButton } from "./components/country-info-button";
+import { CountryInfoButton } from "../../components/country-info-button";
 
 export default async function CountryListPage() {
   const countries = await CountryService.getAvailableCountries();
