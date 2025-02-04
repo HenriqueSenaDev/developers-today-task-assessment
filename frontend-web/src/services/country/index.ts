@@ -7,7 +7,7 @@ export const CountryService = {
     type ResponseBodyType = Array<{ countryCode: string; name: string }>;
 
     const response = await axios.get<null, AxiosResponse<ResponseBodyType>>(
-      "http://localhost:4000/countries/",
+      process.env.NEXT_PUBLIC_BACKEND_HOST + "/countries",
     );
 
     return response.data;
@@ -16,7 +16,7 @@ export const CountryService = {
     const response = await axios.post<
       CountryEntity,
       AxiosResponse<CountryInfo>
-    >("http://localhost:4000/countries/info", payload);
+    >(process.env.NEXT_PUBLIC_BACKEND_HOST + "/countries/info", payload);
 
     return response.data;
   },
