@@ -86,22 +86,30 @@ export class CountryApiRepository extends ICountryRepository {
       };
     };
 
-    const responseObservable = this.httpService.post<ResponseBodyType>(
-      "https://countriesnow.space/api/v0.1/countries/population",
-      { country: countryName },
-    );
+    try {
+      const responseObservable = this.httpService.post<ResponseBodyType>(
+        "https://countriesnow.space/api/v0.1/countries/population",
+        { country: countryName },
+      );
 
-    const response = await firstValueFrom(responseObservable);
+      const response = await firstValueFrom(responseObservable);
 
-    const countsByYear = response.data.data.populationCounts;
+      const countsByYear = response.data.data.populationCounts;
 
-    return countsByYear.map(
-      (count) =>
-        new CountryYearPopulation({
-          year: count.year,
-          population: count.value,
-        }),
-    );
+      return countsByYear.map(
+        (count) =>
+          new CountryYearPopulation({
+            year: count.year,
+            population: count.value,
+          }),
+      );
+    } catch (error) {
+      console.error(
+        `Could not find population history for country '${countryName}'`,
+      );
+      console.log(error);
+      return [];
+    }
   }
 
   async getCountryInfo({
